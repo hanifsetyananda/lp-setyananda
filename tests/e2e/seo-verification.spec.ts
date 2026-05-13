@@ -50,5 +50,14 @@ test.describe('SEO & Metadata Completeness Verification', () => {
     expect(parsedJson.sameAs).toContain(
       'https://web.facebook.com/profile.php?id=61589536477399'
     )
+
+    // 6. Favicon verification
+    const favicon = page.locator('link[rel="icon"]')
+    await expect(favicon).toHaveAttribute('href', '/logo.png')
+
+    // 7. Twitter Card Verification
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image')
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', /Setyananda/)
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', '/og-image.png')
   })
 })

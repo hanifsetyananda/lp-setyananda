@@ -10,38 +10,11 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
+    channel: 'chromium', // Use system-installed Chromium to bypass Kali Linux dependency issues
   },
   projects: [
     {
-      name: 'iPhone 17',
-      use: {
-        ...devices['iPhone 15'], // Uses standard latest iOS emulation preset as base
-        viewport: { width: 402, height: 874 },
-      },
-    },
-    {
-      name: 'iPhone 17 Pro',
-      use: {
-        ...devices['iPhone 15 Pro'],
-        viewport: { width: 402, height: 874 },
-      },
-    },
-    {
-      name: 'iPhone 17 Pro Max',
-      use: {
-        ...devices['iPhone 15 Pro Max'],
-        viewport: { width: 440, height: 956 },
-      },
-    },
-    {
-      name: 'Samsung Galaxy S25',
-      use: {
-        ...devices['Pixel 7'], // Uses Android preset as base
-        viewport: { width: 360, height: 780 },
-      },
-    },
-    {
-      name: 'Samsung Galaxy S25 Ultra',
+      name: 'Phone Standard',
       use: {
         ...devices['Pixel 7'],
         viewport: { width: 412, height: 891 },
@@ -58,6 +31,7 @@ export default defineConfig({
       name: 'Tablet Standard',
       use: {
         ...devices['iPad Mini'],
+        browserName: 'chromium',
         viewport: { width: 768, height: 1024 },
       },
     },

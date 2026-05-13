@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ContactSection from '#components/pages/landing-page/contact'
 import emailjs from '@emailjs/browser'
@@ -83,5 +83,78 @@ describe('ContactSection Component', () => {
     expect(
       screen.getByText(/Pesan berhasil dikirim! Saya akan segera membalasnya/i)
     ).toBeInTheDocument()
+  })
+
+  it('shows error state when emailjs.send fails', async () => {
+    const user = userEvent.setup()
+    render(<ContactSection />)
+
+    // Mock failure API response
+    ;(emailjs.send as unknown as ReturnType<typeof vi.fn>).mockRejectedValueOnce(
+      new Error('EmailJS error')
+    )
+
+    await user.type(screen.getByLabelText(/Nama Lengkap/i), 'Andi Wijaya')
+    await user.type(screen.getByLabelText(/^Email$/i), 'andi@contoh.com')
+    await user.type(
+      screen.getByLabelText(/Isi Pesan/i),
+      'Halo, ingin konsultasi pembuatan web.'
+    )
+
+    const submitBtn = screen.getByRole('button', {
+      name: /Kirim Pesan Sekarang/i,
+    })
+    await user.click(submitBtn)
+
+    await waitFor(() => {
+      expect(emailjs.send).toHaveBeenCalledTimes(1)
+    })
+
+    // Assert error message display
+    expect(
+      screen.getByText(/Mohon lengkapi semua field yang wajib diisi/i)
+    ).toBeInTheDocument()
+  })
+
+  it('resets form fields after successful submission', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+    render(<ContactSection />)
+
+    // Mock successful API response
+    ;(emailjs.send as unknown as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      status: 200,
+      text: 'OK',
+    })
+
+    await user.type(screen.getByLabelText(/Nama Lengkap/i), 'Andi Wijaya')
+    await user.type(screen.getByLabelText(/^Email$/i), 'andi@contoh.com')
+    await user.type(
+      screen.getByLabelText(/Isi Pesan/i),
+      'Halo, ingin konsultasi pembuatan web.'
+    )
+
+    const submitBtn = screen.getByRole('button', {
+      name: /Kirim Pesan Sekarang/i,
+    })
+    await user.click(submitBtn)
+
+    await waitFor(() => {
+      expect(emailjs.send).toHaveBeenCalledTimes(1)
+    })
+
+    // Advance timers by 4 seconds to trigger form reset
+    // Wrap in act because it triggers state updates
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(4000)
+    })
+
+    await waitFor(() => {
+      expect(screen.getByLabelText(/Nama Lengkap/i)).toHaveValue('')
+      expect(screen.getByLabelText(/^Email$/i)).toHaveValue('')
+      expect(screen.getByLabelText(/Isi Pesan/i)).toHaveValue('')
+    })
+
+    vi.useRealTimers()
   })
 })
