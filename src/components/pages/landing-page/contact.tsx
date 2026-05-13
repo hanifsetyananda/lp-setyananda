@@ -85,8 +85,9 @@ export default function ContactSection() {
                                     className="w-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
                                 >
                                     <img
-                                        src="/contact.png"
+                                        src="/assets/contact-illustration.webp"
                                         alt="Contact illustration"
+                                        loading="lazy"
                                         className="w-full object-cover"
                                     />
                                 </motion.div>

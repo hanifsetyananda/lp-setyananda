@@ -14,7 +14,7 @@ export default function HeroSection() {
                     className="absolute right-[-15%] sm:right-[-10%] lg:right-[-10%] top-1/2 -translate-y-1/2 w-[95%] sm:w-[80%] lg:w-[65%] max-w-[1100px]"
                 >
                     <img
-                        src="/img1.png"
+                        src="/assets/hero-bg.webp"
                         alt="Hero background"
                         className="w-full h-auto object-contain drop-shadow-2xl blur-sm opacity-30 sm:opacity-50 lg:opacity-90"
                     />

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const products = [
     {
         title: "Jasa Pembuatan Website Pribadi",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop",
+        image: "/assets/web-pribadi.webp",
         features: [
             "Website Portfolio agar terlihat Profesional",
             "Biaya Gratis jika ingin perubahan kecil",
@@ -15,7 +15,7 @@ const products = [
     },
     {
         title: "Jasa Pembuatan Company Profile",
-        image: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=400&h=250&fit=crop",
+        image: "/assets/company-profile.webp",
         features: [
             "Fitur Artikel, Produk, Galeri",
             "Website muncul di Google Search",
@@ -26,7 +26,7 @@ const products = [
     },
     {
         title: "Jasa Pembuatan Aplikasi Custom",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=250&fit=crop",
+        image: "/assets/custom-app.webp",
         features: [
             "Pembuatan aplikasi mobile, desktop, ataupun website",
             "Saya bisa memberikan solusi murah dan cerdas berdasarkan kebutuhan Anda",
@@ -85,6 +85,7 @@ export default function ProductSection() {
                                     <img
                                         src={product.image}
                                         alt={product.title}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
