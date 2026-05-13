@@ -64,14 +64,14 @@ Google bot memerlukan file ini untuk menemukan dan mengindex halaman website.
 - `public/sitemap.xml` — [NEW]
 
 ### Acceptance Criteria
-- [ ] `robots.txt` berisi:
+- [x] `robots.txt` berisi:
   ```
   User-agent: *
   Allow: /
   ```
   (Jangan tambahkan Sitemap URL dulu karena domain belum final)
 
-- [ ] `sitemap.xml` berisi entry untuk halaman utama:
+- [x] `sitemap.xml` berisi entry untuk halaman utama:
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
