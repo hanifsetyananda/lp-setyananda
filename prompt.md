@@ -1,11 +1,19 @@
-Buatkan secara garis besar apa yang harus saya finishing di projek ini. 
+Rubah di issues.md dan buat task prioritas terbaru yang harus dibuat oleh junior porgrammer / ai agent
 
-Tujuan projek ini untuk company profile perusahaan saya bernama setyananda.
+task / issues terbaru tersebut adaalah saya ingin ada application testing / unit test terlebih dahulu dengan beberapa pass sebagai berikut
 
-Saya juga memiliki logo. sementara pakai ini dulu aja.
-Saya juga ingin aplikasi ini di deploy di cloudflare pages. 
-Saya juga ingin bisa masuk ke Google Search (tidak harus pertama, tapi muncul ketika dicari)
+1.  website tidak terjadi error saat di run (bun run dev / bun run build)
+2.  desain masih responsive ketika di resize viewport
+3. form input ke emailjs tidak terjadi error.
+    - sebetulnya saya masih bingung, karena ada limit 200 pengiriman setiap bulan. Dan saya tidak mau menyia nyiakannya hanya untuk keperluan testing. 
+    - bagaimana jika hanya test buttonnya dan formnya berfungsi? dan kirimkan dengan credentials yang salah? jadi tidak menghabiskan limit?
+    - atau gimana? ada saran
+4. button link di navbar untuk pindah pindah halaman berdasarkan # target tidak error atau salah target
+5. button facebook mengarah ke link facebook saya dan hrefnya berjalan
+6. button switch dark dan light mode berjalan normal
 
-Kemudian buatkan issue.md dari planning ini, agar bisa dikerjakan oleh junior developer atau AI Agent lain yang lebih murah.
+Kemudian ada banyak issues yang sudah berhasil dikerjakan. Buatkan juga test case ke issues issues tersebut. 
 
-Intinya apa yang harus saya tambahkan lagi
+Kemudian tambahkan juga di AI Agent Workflow Instructions bahwa sebelum pull request, harus run test case dan tidak boleh error
+
+Sampai sini ada pertanyaan? 

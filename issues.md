@@ -2,18 +2,20 @@
 
 > File ini berisi daftar issue yang bisa dikerjakan oleh junior developer atau AI Agent.
 > Setiap issue bersifat **independen** dan bisa dikerjakan secara paralel kecuali disebutkan sebaliknya.
-> Jika anda adalah AI Agent, selalu buat Task / Planning Terlebih dahulu, agar progress pengerjaan anda bisa dilihat oleh programmer
 > **Domain sementara:** `*.pages.dev` (Cloudflare Pages)
 > **Bahasa:** Bahasa Indonesia
 > **Sosial Media:** Facebook — https://web.facebook.com/profile.php?id=61589536477399
 
+> [!CAUTION]
+> **ATURAN KRITIS REPOSITORI**: Dilarang keras melakukan *commit* atau *push* kode secara langsung ke branch `main`. Branch `main` **tidak boleh** menerima kodingan atau modifikasi apa pun tanpa melalui Pull Request / Merge Request yang secara eksplisit telah disetujui oleh **Owner**.
+
 ### 🤖 AI Agent Workflow Instructions (Wajib Diikuti)
-1. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
-2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
-3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
-4. **Verifikasi kode**: Sebelum membuat Pull Request baru, selalu jalankan `bun run dev` dan pastikan tidak terdapat error/kegagalan kompilasi. Jika ada, perbaiki terlebih dahulu bugnya sampai tuntas.
-5. **Jalankan test suite**: Setelah kode terverifikasi, jalankan `bun run test` dan pastikan **semua test pass tanpa error**. Jika ada test yang gagal, perbaiki terlebih dahulu sebelum melanjutkan.
-6. **Setelah selesai dan terverifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
+1. **Perencanaan Wajib**: Jika Anda adalah AI Agent, selalu buat Task / Planning terlebih dahulu di awal, agar progres pengerjaan Anda bisa dilihat dan dipantau oleh programmer.
+2. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
+3. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
+4. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
+5. **Verifikasi dan Testing Mandiri**: Sebelum membuat Pull Request baru, Anda **wajib** menjalankan seluruh *test case* dan pengujian lokal via `bun run test` / `bun run dev` / `bun run build`. Pastikan **tidak ada satupun error**. Jika terdapat kegagalan atau bug, perbaiki terlebih dahulu sampai tuntas dan 100% lulus uji.
+6. **Setelah selesai dan lulus verifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 
 ---
 
@@ -153,8 +155,10 @@ Header saat ini hanya menampilkan teks "Setyananda". Perlu ditambahkan logo imag
 ---
 
 ## Issue #6: Perkaya Footer
-**Priority:** 🟡 High  
+**Priority:** 🟡 High (⚠️ **DITUNDA / ABANDONED SEMENTARA**)  
 **Estimated Effort:** 1 jam
+
+> **Catatan Pengerjaan Sebelumnya**: Pengerjaan komponen footer dan perbaikan awal telah dilakukan pada branch `feature/issue-6-rich-footer`. Jika Anda ditugaskan untuk melanjutkan atau menyelesaikan Issue #6 di masa depan, **jangan mulai dari awal**. Silakan lakukan *checkout* dan lanjutkan dari branch `feature/issue-6-rich-footer`.
 
 ### Context
 Footer saat ini hanya menampilkan "Copyright 2026 Setyananda". Untuk company profile profesional, footer harus lebih informatif.
@@ -167,13 +171,13 @@ Footer saat ini hanya menampilkan "Copyright 2026 Setyananda". Untuk company pro
 - Nav links: Beranda (#home), Layanan (#service), Kontak (#contact)
 
 ### Acceptance Criteria
-- [x] Layout footer multi-kolom (desktop), stack vertikal (mobile):
+- [ ] Layout footer multi-kolom (desktop), stack vertikal (mobile):
   - Kolom 1: Logo/nama + deskripsi singkat (1-2 kalimat)
   - Kolom 2: Quick Links — Beranda, Layanan, Kontak
   - Kolom 3: Sosial Media — icon Facebook yang link ke page di atas
-- [x] Copyright text tetap ada di paling bawah
-- [x] Facebook icon gunakan dari `lucide-react` (`Facebook` icon)
-- [x] Animasi `whileInView` konsisten dengan section lain
+- [ ] Copyright text tetap ada di paling bawah
+- [ ] Facebook icon gunakan dari `lucide-react` (`Facebook` icon)
+- [ ] Animasi `whileInView` konsisten dengan section lain
 
 ---
 
@@ -303,9 +307,9 @@ Gambar produk menggunakan URL external Unsplash. Sebaiknya lokal.
 - `src/App.tsx` — hapus `import Header` (unused, sudah di-import di landing-page)
 
 ### Acceptance Criteria
-- [x] Tidak ada unused imports
-- [x] `npm run lint` tidak ada error
-- [x] `npm run build` berhasil tanpa warning
+- [ ] Tidak ada unused imports
+- [ ] `npm run lint` tidak ada error
+- [ ] `npm run build` berhasil tanpa warning
 
 ---
 
@@ -327,241 +331,61 @@ Perlu tracking pengunjung untuk memahami traffic website.
 
 ---
 
-## Issue #13: Application Testing (Vitest + Playwright)
-**Priority:** 🔴 Critical  
-**Estimated Effort:** 3-4 jam  
-**Depends on:** Semua issue sebelumnya yang sudah selesai (#1-#8, #11)
+## Issue #13: Application Testing & Unit Testing (Vitest + Playwright)
+**Priority:** 🔴 Critical (⚡ **PRIORITAS UTAMA TERBARU**)  
+**Estimated Effort:** 2-3 jam
 
 ### Context
-Website belum memiliki automated test. Sebelum deploy ke production, diperlukan test suite yang memastikan semua fitur berjalan dengan benar. Gunakan **Vitest** untuk unit/component test dan **Playwright** untuk end-to-end (E2E) test.
+Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) dan verifikasi aplikasi yang kokoh sebelum *deployment* ke *production*. Pengujian harus mencakup kestabilan saat *build*, responsivitas desain pada berbagai ukuran layar, fungsionalitas formulir kontak, keakuratan tautan navigasi, integrasi tautan sosial, dan transisi tema mode gelap/terang.
 
-### Setup yang Diperlukan
+### Strategi Pengujian EmailJS (Wajib Diikuti)
+> ⚠️ **PENTING**: Akun EmailJS memiliki batas maksimal pengiriman gratis **200 email per bulan**. JANGAN menghabiskan kuota ini untuk keperluan *automated testing*.
+> - **Solusi**: Lakukan **Mock** pada fungsi `emailjs.send()` di dalam unit test menggunakan library seperti `vi.mock()` dari Vitest, sehingga pengujian dapat memverifikasi logika pengiriman, penanganan status sukses/gagal, dan *reset* formulir tanpa melakukan panggilan jaringan riil ke server EmailJS.
 
-#### 1. Install Dependencies
-```bash
-# Unit testing
-bun add -D vitest jsdom @testing-library/react @testing-library/user-event @testing-library/jest-dom
-
-# E2E testing
-bun add -D @playwright/test
-npx playwright install
-```
-
-#### 2. File Konfigurasi yang Harus Dibuat
-
-##### [NEW] `vitest.config.ts`
-```ts
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-    exclude: ['**/node_modules/**', '**/tests/e2e/**'],
-  },
-  resolve: {
-    alias: {
-      '#components': '/src/components',
-      '#lib': '/src/lib',
-      '#hooks': '/src/hooks',
-    },
-  },
-})
-```
-
-##### [NEW] `src/test/setup.ts`
-```ts
-import '@testing-library/jest-dom'
-```
-
-##### [NEW] `playwright.config.ts`
-```ts
-import { defineConfig, devices } from '@playwright/test'
-
-export default defineConfig({
-  testDir: './tests/e2e',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  reporter: 'html',
-  use: {
-    baseURL: 'http://localhost:5173',
-    trace: 'on-first-retry',
-  },
-  webServer: {
-    command: 'bun run dev',
-    url: 'http://localhost:5173',
-    reuseExistingServer: !process.env.CI,
-  },
-  projects: [
-    // Desktop
-    {
-      name: 'Desktop Chrome',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 720 } },
-    },
-    // Tablet
-    {
-      name: 'Tablet',
-      use: { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2 },
-    },
-    // iPhone 17 / 17 Pro (402x874, WebKit)
-    {
-      name: 'iPhone 17',
-      use: { viewport: { width: 402, height: 874 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, defaultBrowserType: 'webkit' },
-    },
-    // iPhone 17 Pro Max (440x956, WebKit)
-    {
-      name: 'iPhone 17 Pro Max',
-      use: { viewport: { width: 440, height: 956 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, defaultBrowserType: 'webkit' },
-    },
-    // Samsung Galaxy S25 (360x780, Chromium)
-    {
-      name: 'Galaxy S25',
-      use: { viewport: { width: 360, height: 780 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true },
-    },
-    // Samsung Galaxy S25 Ultra (412x891, Chromium)
-    {
-      name: 'Galaxy S25 Ultra',
-      use: { viewport: { width: 412, height: 891 }, deviceScaleFactor: 3.5, isMobile: true, hasTouch: true },
-    },
-  ],
-})
-```
-
-##### [MODIFY] `package.json` — Tambahkan scripts:
-```json
-"scripts": {
-  "test": "vitest run && playwright test",
-  "test:unit": "vitest run",
-  "test:e2e": "playwright test",
-  "test:e2e:ui": "playwright test --ui"
-}
-```
-
----
-
-### Test Cases — Unit Tests (Vitest)
-
-#### [NEW] `src/__tests__/build-check.test.ts`
-Test bahwa project bisa di-build tanpa error:
-- [ ] `bun run build` exit code 0 (gunakan `execSync`)
-
-#### [NEW] `src/__tests__/contact-form.test.tsx`
-Test form kontak **tanpa mengirim email sungguhan** (mock `emailjs`):
-
-> ⚠️ **PENTING**: EmailJS memiliki limit 200 pengiriman/bulan. **JANGAN** pernah mengirim email sungguhan di test.
-> Gunakan `vi.mock('@emailjs/browser')` untuk mock seluruh module.
-
-- [ ] Form render semua field yang diperlukan (name, email, phone, content)
-- [ ] Input field bisa diketik dan value berubah
-- [ ] Submit dengan field wajib kosong → status berubah ke `error`
-- [ ] Submit dengan field valid → `emailjs.send()` dipanggil (mock)
-- [ ] Mock `emailjs.send()` resolve → status berubah ke `success`, form reset
-- [ ] Mock `emailjs.send()` reject → status berubah ke `error`
-
-Contoh mock pattern:
-```tsx
-import { vi } from 'vitest'
-import emailjs from '@emailjs/browser'
-
-vi.mock('@emailjs/browser', () => ({
-  default: {
-    send: vi.fn().mockResolvedValue({ status: 200, text: 'OK' }),
-  },
-}))
-```
-
----
-
-### Test Cases — E2E Tests (Playwright)
-
-Semua E2E test harus dijalankan di **setiap viewport/device** yang dikonfigurasi di `playwright.config.ts`.
-
-#### [NEW] `tests/e2e/responsive.spec.ts`
-Verifikasi responsivitas di semua device target:
-- [ ] Halaman load tanpa JavaScript error di console
-- [ ] Navbar terlihat dan tidak overflow horizontal
-- [ ] Hero section (`#home`) terlihat
-- [ ] Services section (`#service`) terlihat
-- [ ] Contact section (`#contact`) terlihat
-- [ ] Footer terlihat
-- [ ] Tidak ada horizontal scrollbar yang tidak diinginkan (page width = viewport width)
-
-#### [NEW] `tests/e2e/navigation.spec.ts`
-Verifikasi navigasi anchor link:
-- [ ] Klik link navbar `Beranda` → halaman scroll ke section `#home`
-- [ ] Klik link navbar `Layanan` → halaman scroll ke section `#service`
-- [ ] Klik link navbar `Kontak` → halaman scroll ke section `#contact`
-- [ ] Klik link footer `Beranda` → halaman scroll ke section `#home`
-- [ ] Klik link footer `Layanan` → halaman scroll ke section `#service`
-- [ ] Klik link footer `Kontak` → halaman scroll ke section `#contact`
-
-#### [NEW] `tests/e2e/facebook-link.spec.ts`
-Verifikasi link Facebook:
-- [ ] Link Facebook di footer memiliki `href` = `https://web.facebook.com/profile.php?id=61589536477399`
-- [ ] Link memiliki attribute `target="_blank"`
-- [ ] Link memiliki attribute `rel="noopener noreferrer"`
-
-#### [NEW] `tests/e2e/dark-mode.spec.ts`
-Verifikasi toggle dark/light mode:
-- [ ] Button toggle dark/light mode ada dan bisa diklik
-- [ ] Klik toggle → class `dark` ditambahkan pada `<html>` element
-- [ ] Klik toggle lagi → class `dark` dihapus dari `<html>` element
-- [ ] Background warna berubah setelah toggle
-- [ ] Toggle bisa diklik berulang kali tanpa error
-
-#### [NEW] `tests/e2e/contact-form.spec.ts`
-Verifikasi form kontak (E2E, tanpa kirim email):
-- [ ] Semua field input (name, email, phone, content) bisa diisi
-- [ ] Button submit ada dan bisa diklik
-- [ ] Submit dengan field kosong → tidak crash / tidak ada uncaught error
-
-#### [NEW] `tests/e2e/seo-verification.spec.ts`
-Verifikasi hasil pengerjaan Issue #1 - #4 (SEO):
-- [ ] `<title>` mengandung teks "Setyananda"
-- [ ] `<html>` memiliki attribute `lang="id"`
-- [ ] `<meta name="description">` ada dan tidak kosong
-- [ ] `<meta property="og:title">` ada
-- [ ] `<meta property="og:description">` ada
-- [ ] `<meta property="og:type">` ada
-- [ ] `<meta name="twitter:card">` ada
-- [ ] `<script type="application/ld+json">` ada dan berisi JSON valid dengan `@type: Organization`
-- [ ] `<link rel="icon">` (favicon) ada
-
----
-
-### Acceptance Criteria (Keseluruhan Issue #13)
-- [ ] Semua dependencies testing terinstall (`vitest`, `@playwright/test`, `@testing-library/react`, dll)
-- [ ] `bun run test:unit` — semua unit test pass
-- [ ] `bun run test:e2e` — semua E2E test pass di semua device viewport
-- [ ] `bun run test` — menjalankan unit + E2E, semua pass
-- [ ] Tidak ada email EmailJS yang terkirim selama testing (cek dashboard)
-- [ ] File `.gitignore` sudah mengabaikan `test-results/`, `playwright-report/`, `.playwright/`
+### Acceptance Criteria & Test Cases
+- [x] **Pass 1: Kestabilan Run & Build**
+  - Website tidak mengalami *error* atau *crash* saat dijalankan via perintah `bun run dev` maupun `bun run build`.
+- [x] **Pass 2: Responsivitas Desain (Viewport Testing)**
+  - Desain antarmuka terbukti tetap responsif, rapi, dan tidak mengalami *overflow* saat diuji pada *viewport* spesifik:
+    - **Tablet iPad Mini, Phone Pixel 7, dan Desktop Standard**
+- [x] **Pass 3: Formulir Kontak EmailJS**
+  - Validasi *input* berfungsi dengan baik, tombol kirim dapat diinteraksi, dan penanganan status berhasil diuji secara terisolasi via *mocking* tanpa mengurangi kuota bulanan EmailJS.
+- [x] **Pass 4: Navigasi Tautan Internal**
+  - Tombol dan tautan di *navbar* maupun *footer* yang mengarah ke target *anchor* (`#home`, `#service`, `#contact`) terverifikasi tepat sasaran dan lancar tanpa kegagalan *scroll*.
+- [x] **Pass 5: Integrasi Tombol Facebook**
+  - Tombol Facebook mengarah ke atribut `href` yang akurat (`https://web.facebook.com/profile.php?id=61589536477399`) dan berhasil dibuka.
+- [x] **Pass 6: Pergantian Mode Gelap & Terang**
+  - Tombol *switch* *dark mode* dan *light mode* berfungsi normal memodifikasi kelas pada dokumen HTML dan merender warna latar yang tepat.
+- [x] **Pass 7: Verifikasi Isu-Isu Terdahulu**
+  - Tersedia *test case* untuk memvalidasi keberhasilan pengerjaan isu sebelumnya, seperti keakuratan `<title>`, atribut `lang="id"`, keberadaan *meta tag* SEO, kelengkapan Open Graph, validitas data terstruktur JSON-LD, serta tautan *favicon*.
 
 ---
 
 ## Urutan Pengerjaan yang Disarankan
 
 ```
-✅  Issue #1  — Ganti Title & Branding         (SELESAI)
-✅  Issue #5  — Pasang Logo                     (SELESAI)
-✅  Issue #8  — Environment Variables           (SELESAI)
-✅  Issue #11 — Code Cleanup                    (SELESAI)
-✅  Issue #2  — Meta Tags SEO                   (SELESAI)
-✅  Issue #3  — robots.txt & sitemap.xml        (SELESAI)
-✅  Issue #4  — Structured Data JSON-LD         (SELESAI)
-✅  Issue #6  — Perkaya Footer + Facebook       (SELESAI)
+>>> PRIORITAS UTAMA SAAT INI >>>
+- Saat ini tidak ada isu prioritas utama. Silakan lanjutkan ke isu tertunda.
 
->>> PRIORITAS SEKARANG >>>
-1.  Issue #13 — Application Testing             (3-4 jam)
+>>> ISU SELESAI / TERVERIFIKASI >>>
+-   Issue #13 — Application Testing & Unit Testing (SELESAI)
+-   Issue #1  — Ganti Title & Branding         (SELESAI)
+-   Issue #5  — Pasang Logo                     (SELESAI)
+-   Issue #8  — Environment Variables           (SELESAI)
+-   Issue #11 — Code Cleanup                    (SELESAI)
+-   Issue #2  — Meta Tags SEO                   (SELESAI)
+-   Issue #3  — robots.txt & sitemap.xml        (SELESAI)
+-   Issue #4  — Structured Data JSON-LD         (SELESAI)
+
+>>> ISU TERTUNDA / SELANJUTNYA >>>
+1.  Issue #6  — Perkaya Footer + Facebook       (DITUNDA - Lanjutkan dari branch feature/issue-6-rich-footer)
 2.  Issue #9  — OG Image                        (30 min)
 3.  Issue #10 — Optimasi Gambar                 (1 jam)
 4.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
 5.  Issue #12 — Analytics                       (20 min)
 ```
+
+**Estimasi total: ~5-6 jam kerja**
 
 ---
 
