@@ -112,7 +112,7 @@ describe('ContactSection Component', () => {
 
     // Assert error message display
     expect(
-      screen.getByText(/Mohon lengkapi semua field yang wajib diisi/i)
+      screen.getByText(/terjadi kesalahan saat mengirim pesan/i)
     ).toBeInTheDocument()
   })
 
