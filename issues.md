@@ -12,7 +12,8 @@
 2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
 3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
 4. **Verifikasi kode**: Sebelum membuat Pull Request baru, selalu jalankan `bun run dev` dan pastikan tidak terdapat error/kegagalan kompilasi. Jika ada, perbaiki terlebih dahulu bugnya sampai tuntas.
-5. **Setelah selesai dan terverifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
+5. **Jalankan test suite**: Setelah kode terverifikasi, jalankan `bun run test` dan pastikan **semua test pass tanpa error**. Jika ada test yang gagal, perbaiki terlebih dahulu sebelum melanjutkan.
+6. **Setelah selesai dan terverifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 
 ---
 
@@ -302,9 +303,9 @@ Gambar produk menggunakan URL external Unsplash. Sebaiknya lokal.
 - `src/App.tsx` — hapus `import Header` (unused, sudah di-import di landing-page)
 
 ### Acceptance Criteria
-- [ ] Tidak ada unused imports
-- [ ] `npm run lint` tidak ada error
-- [ ] `npm run build` berhasil tanpa warning
+- [x] Tidak ada unused imports
+- [x] `npm run lint` tidak ada error
+- [x] `npm run build` berhasil tanpa warning
 
 ---
 
@@ -326,24 +327,241 @@ Perlu tracking pengunjung untuk memahami traffic website.
 
 ---
 
+## Issue #13: Application Testing (Vitest + Playwright)
+**Priority:** 🔴 Critical  
+**Estimated Effort:** 3-4 jam  
+**Depends on:** Semua issue sebelumnya yang sudah selesai (#1-#8, #11)
+
+### Context
+Website belum memiliki automated test. Sebelum deploy ke production, diperlukan test suite yang memastikan semua fitur berjalan dengan benar. Gunakan **Vitest** untuk unit/component test dan **Playwright** untuk end-to-end (E2E) test.
+
+### Setup yang Diperlukan
+
+#### 1. Install Dependencies
+```bash
+# Unit testing
+bun add -D vitest jsdom @testing-library/react @testing-library/user-event @testing-library/jest-dom
+
+# E2E testing
+bun add -D @playwright/test
+npx playwright install
+```
+
+#### 2. File Konfigurasi yang Harus Dibuat
+
+##### [NEW] `vitest.config.ts`
+```ts
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    exclude: ['**/node_modules/**', '**/tests/e2e/**'],
+  },
+  resolve: {
+    alias: {
+      '#components': '/src/components',
+      '#lib': '/src/lib',
+      '#hooks': '/src/hooks',
+    },
+  },
+})
+```
+
+##### [NEW] `src/test/setup.ts`
+```ts
+import '@testing-library/jest-dom'
+```
+
+##### [NEW] `playwright.config.ts`
+```ts
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  reporter: 'html',
+  use: {
+    baseURL: 'http://localhost:5173',
+    trace: 'on-first-retry',
+  },
+  webServer: {
+    command: 'bun run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
+  },
+  projects: [
+    // Desktop
+    {
+      name: 'Desktop Chrome',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 720 } },
+    },
+    // Tablet
+    {
+      name: 'Tablet',
+      use: { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2 },
+    },
+    // iPhone 17 / 17 Pro (402x874, WebKit)
+    {
+      name: 'iPhone 17',
+      use: { viewport: { width: 402, height: 874 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, defaultBrowserType: 'webkit' },
+    },
+    // iPhone 17 Pro Max (440x956, WebKit)
+    {
+      name: 'iPhone 17 Pro Max',
+      use: { viewport: { width: 440, height: 956 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, defaultBrowserType: 'webkit' },
+    },
+    // Samsung Galaxy S25 (360x780, Chromium)
+    {
+      name: 'Galaxy S25',
+      use: { viewport: { width: 360, height: 780 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true },
+    },
+    // Samsung Galaxy S25 Ultra (412x891, Chromium)
+    {
+      name: 'Galaxy S25 Ultra',
+      use: { viewport: { width: 412, height: 891 }, deviceScaleFactor: 3.5, isMobile: true, hasTouch: true },
+    },
+  ],
+})
+```
+
+##### [MODIFY] `package.json` — Tambahkan scripts:
+```json
+"scripts": {
+  "test": "vitest run && playwright test",
+  "test:unit": "vitest run",
+  "test:e2e": "playwright test",
+  "test:e2e:ui": "playwright test --ui"
+}
+```
+
+---
+
+### Test Cases — Unit Tests (Vitest)
+
+#### [NEW] `src/__tests__/build-check.test.ts`
+Test bahwa project bisa di-build tanpa error:
+- [ ] `bun run build` exit code 0 (gunakan `execSync`)
+
+#### [NEW] `src/__tests__/contact-form.test.tsx`
+Test form kontak **tanpa mengirim email sungguhan** (mock `emailjs`):
+
+> ⚠️ **PENTING**: EmailJS memiliki limit 200 pengiriman/bulan. **JANGAN** pernah mengirim email sungguhan di test.
+> Gunakan `vi.mock('@emailjs/browser')` untuk mock seluruh module.
+
+- [ ] Form render semua field yang diperlukan (name, email, phone, content)
+- [ ] Input field bisa diketik dan value berubah
+- [ ] Submit dengan field wajib kosong → status berubah ke `error`
+- [ ] Submit dengan field valid → `emailjs.send()` dipanggil (mock)
+- [ ] Mock `emailjs.send()` resolve → status berubah ke `success`, form reset
+- [ ] Mock `emailjs.send()` reject → status berubah ke `error`
+
+Contoh mock pattern:
+```tsx
+import { vi } from 'vitest'
+import emailjs from '@emailjs/browser'
+
+vi.mock('@emailjs/browser', () => ({
+  default: {
+    send: vi.fn().mockResolvedValue({ status: 200, text: 'OK' }),
+  },
+}))
+```
+
+---
+
+### Test Cases — E2E Tests (Playwright)
+
+Semua E2E test harus dijalankan di **setiap viewport/device** yang dikonfigurasi di `playwright.config.ts`.
+
+#### [NEW] `tests/e2e/responsive.spec.ts`
+Verifikasi responsivitas di semua device target:
+- [ ] Halaman load tanpa JavaScript error di console
+- [ ] Navbar terlihat dan tidak overflow horizontal
+- [ ] Hero section (`#home`) terlihat
+- [ ] Services section (`#service`) terlihat
+- [ ] Contact section (`#contact`) terlihat
+- [ ] Footer terlihat
+- [ ] Tidak ada horizontal scrollbar yang tidak diinginkan (page width = viewport width)
+
+#### [NEW] `tests/e2e/navigation.spec.ts`
+Verifikasi navigasi anchor link:
+- [ ] Klik link navbar `Beranda` → halaman scroll ke section `#home`
+- [ ] Klik link navbar `Layanan` → halaman scroll ke section `#service`
+- [ ] Klik link navbar `Kontak` → halaman scroll ke section `#contact`
+- [ ] Klik link footer `Beranda` → halaman scroll ke section `#home`
+- [ ] Klik link footer `Layanan` → halaman scroll ke section `#service`
+- [ ] Klik link footer `Kontak` → halaman scroll ke section `#contact`
+
+#### [NEW] `tests/e2e/facebook-link.spec.ts`
+Verifikasi link Facebook:
+- [ ] Link Facebook di footer memiliki `href` = `https://web.facebook.com/profile.php?id=61589536477399`
+- [ ] Link memiliki attribute `target="_blank"`
+- [ ] Link memiliki attribute `rel="noopener noreferrer"`
+
+#### [NEW] `tests/e2e/dark-mode.spec.ts`
+Verifikasi toggle dark/light mode:
+- [ ] Button toggle dark/light mode ada dan bisa diklik
+- [ ] Klik toggle → class `dark` ditambahkan pada `<html>` element
+- [ ] Klik toggle lagi → class `dark` dihapus dari `<html>` element
+- [ ] Background warna berubah setelah toggle
+- [ ] Toggle bisa diklik berulang kali tanpa error
+
+#### [NEW] `tests/e2e/contact-form.spec.ts`
+Verifikasi form kontak (E2E, tanpa kirim email):
+- [ ] Semua field input (name, email, phone, content) bisa diisi
+- [ ] Button submit ada dan bisa diklik
+- [ ] Submit dengan field kosong → tidak crash / tidak ada uncaught error
+
+#### [NEW] `tests/e2e/seo-verification.spec.ts`
+Verifikasi hasil pengerjaan Issue #1 - #4 (SEO):
+- [ ] `<title>` mengandung teks "Setyananda"
+- [ ] `<html>` memiliki attribute `lang="id"`
+- [ ] `<meta name="description">` ada dan tidak kosong
+- [ ] `<meta property="og:title">` ada
+- [ ] `<meta property="og:description">` ada
+- [ ] `<meta property="og:type">` ada
+- [ ] `<meta name="twitter:card">` ada
+- [ ] `<script type="application/ld+json">` ada dan berisi JSON valid dengan `@type: Organization`
+- [ ] `<link rel="icon">` (favicon) ada
+
+---
+
+### Acceptance Criteria (Keseluruhan Issue #13)
+- [ ] Semua dependencies testing terinstall (`vitest`, `@playwright/test`, `@testing-library/react`, dll)
+- [ ] `bun run test:unit` — semua unit test pass
+- [ ] `bun run test:e2e` — semua E2E test pass di semua device viewport
+- [ ] `bun run test` — menjalankan unit + E2E, semua pass
+- [ ] Tidak ada email EmailJS yang terkirim selama testing (cek dashboard)
+- [ ] File `.gitignore` sudah mengabaikan `test-results/`, `playwright-report/`, `.playwright/`
+
+---
+
 ## Urutan Pengerjaan yang Disarankan
 
 ```
-1.  Issue #1  — Ganti Title & Branding         (15 min)
-2.  Issue #5  — Pasang Logo                     (20 min)
-3.  Issue #8  — Environment Variables           (20 min)
-4.  Issue #11 — Code Cleanup                    (15 min)
-5.  Issue #2  — Meta Tags SEO                   (30 min)
-6.  Issue #3  — robots.txt & sitemap.xml        (15 min)
-7.  Issue #4  — Structured Data JSON-LD         (30 min)
-8.  Issue #6  — Perkaya Footer + Facebook       (1 jam)
-9.  Issue #9  — OG Image                        (30 min)
-10. Issue #10 — Optimasi Gambar                 (1 jam)
-11. Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-12. Issue #12 — Analytics                       (20 min)
-```
+✅  Issue #1  — Ganti Title & Branding         (SELESAI)
+✅  Issue #5  — Pasang Logo                     (SELESAI)
+✅  Issue #8  — Environment Variables           (SELESAI)
+✅  Issue #11 — Code Cleanup                    (SELESAI)
+✅  Issue #2  — Meta Tags SEO                   (SELESAI)
+✅  Issue #3  — robots.txt & sitemap.xml        (SELESAI)
+✅  Issue #4  — Structured Data JSON-LD         (SELESAI)
+✅  Issue #6  — Perkaya Footer + Facebook       (SELESAI)
 
-**Estimasi total: ~5-6 jam kerja**
+>>> PRIORITAS SEKARANG >>>
+1.  Issue #13 — Application Testing             (3-4 jam)
+2.  Issue #9  — OG Image                        (30 min)
+3.  Issue #10 — Optimasi Gambar                 (1 jam)
+4.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
+5.  Issue #12 — Analytics                       (20 min)
+```
 
 ---
 
