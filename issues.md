@@ -7,6 +7,11 @@
 > **Bahasa:** Bahasa Indonesia
 > **Sosial Media:** Facebook — https://web.facebook.com/profile.php?id=61589536477399
 
+### 🤖 AI Agent Workflow Instructions (Wajib Diikuti)
+1. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
+2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
+3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
+4. **Setelah selesai**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 ---
 
 ## Issue #1: Ganti Title & Branding
