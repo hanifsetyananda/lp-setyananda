@@ -143,10 +143,10 @@ Header saat ini hanya menampilkan teks "Setyananda". Perlu ditambahkan logo imag
 - `public/favicon.svg` — ganti dengan logo perusahaan
 
 ### Acceptance Criteria
-- [x] Logo tampil di header, ukuran ~32-40px height
-- [x] Logo responsive (tidak pecah di mobile)
+- [ ] ~~Logo tampil di header, ukuran ~32-40px height~~ (Dibatalkan oleh owner)
+- [ ] ~~Logo responsive (tidak pecah di mobile)~~
 - [x] Favicon di browser tab sesuai logo perusahaan
-- [x] Alt text pada logo: `"Setyananda Logo"`
+- [ ] ~~Alt text pada logo: "Setyananda Logo"~~
 
 ---
 

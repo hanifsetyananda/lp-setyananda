@@ -28,7 +28,6 @@ function Header() {
             <nav className="max-w-7xl flex items-center mx-auto px-4 sm:px-6 justify-between h-16">
                 {/* Logo */}
                 <div className="flex items-center gap-2 cursor-pointer">
-                    <img src="/logo.png" alt="Setyananda Logo" className="h-8 w-auto object-contain" />
                     <h3 className="font-bold text-xl tracking-tight text-foreground">Setyananda</h3>
                 </div>
 
