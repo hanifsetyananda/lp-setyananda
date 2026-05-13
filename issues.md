@@ -270,10 +270,10 @@ Ketika link website dibagikan di WhatsApp, Facebook, atau platform lain, harus a
 - `public/og-image.png` — [NEW], ukuran 1200x630px
 
 ### Acceptance Criteria
-- [ ] Gambar berisi: logo/nama Setyananda, tagline singkat, background yang menarik
-- [ ] Ukuran file < 300KB
-- [ ] Dimensi 1200 x 630 px (standar Open Graph)
-- [ ] Terlihat baik saat dibagikan di WhatsApp dan Facebook
+- [x] Gambar berisi: logo/nama Setyananda, tagline singkat, background yang menarik
+- [x] Ukuran file < 300KB
+- [x] Dimensi 1200 x 630 px (standar Open Graph)
+- [x] Terlihat baik saat dibagikan di WhatsApp dan Facebook
 
 ---
 
