@@ -193,13 +193,13 @@ Website perlu di-deploy ke Cloudflare Pages. Perlu file konfigurasi tambahan.
 - `public/_headers` — [NEW]
 
 ### Acceptance Criteria
-- [ ] `public/_redirects` berisi:
+- [x] `public/_redirects` berisi:
   ```
   /* /index.html 200
   ```
   (Penting untuk SPA agar semua route di-handle oleh React)
 
-- [ ] `public/_headers` berisi:
+- [x] `public/_headers` berisi:
   ```
   /*
     X-Frame-Options: DENY
@@ -211,9 +211,9 @@ Website perlu di-deploy ke Cloudflare Pages. Perlu file konfigurasi tambahan.
     Cache-Control: public, max-age=31536000, immutable
   ```
 
-- [ ] `npm run build` berhasil tanpa error
-- [ ] Folder `dist/` berisi output yang siap deploy
-- [ ] Verifikasi build berhasil dengan `npm run preview`
+- [x] `npm run build` berhasil tanpa error
+- [x] Folder `dist/` berisi output yang siap deploy
+- [x] Verifikasi build berhasil dengan `npm run preview`
 
 ### Deployment Steps
 1. Push code ke GitHub repository
@@ -378,6 +378,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #6  — Perkaya Footer + Facebook       (SELESAI)
 -   Issue #9  — OG Image                        (SELESAI)
 -   Issue #10 — Optimasi Gambar & Performa      (SELESAI)
+-   Issue #7  — Deploy ke Cloudflare Pages      (SELESAI)
 -   Issue #1  — Ganti Title & Branding         (SELESAI)
 -   Issue #5  — Pasang Logo                     (SELESAI)
 -   Issue #8  — Environment Variables           (SELESAI)
@@ -387,8 +388,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #4  — Structured Data JSON-LD         (SELESAI)
 
 >>> ISU TERTUNDA / SELANJUTNYA >>>
-1.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-2.  Issue #12 — Analytics                       (20 min)
+1.  Issue #12 — Analytics                       (20 min)
 ```
 
 **Estimasi total: ~5-6 jam kerja**
