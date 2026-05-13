@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-const easeInOut = [0.25, 0.1, 0.25, 1]
+const easeInOut: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 
 export default function HeroSection() {
     return (

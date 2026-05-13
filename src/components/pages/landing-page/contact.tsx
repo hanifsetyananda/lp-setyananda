@@ -1,16 +1,8 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import emailjs from "@emailjs/browser"
-// import { Facebook, Linkedin } from "lucide-react"
+import { IconBrandFacebook } from "@tabler/icons-react"
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (delay = 0) => ({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay }
-    })
-}
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -102,15 +94,12 @@ export default function ContactSection() {
                             </div>
                         </div>
 
-                        {/* Social icons — commented until social links are ready */}
-                        {/* <div className="flex items-center gap-4">
-                            <a href="#" aria-label="Facebook" className="p-3 bg-muted hover:bg-accent transition-colors rounded-full text-muted-foreground">
-                                <Facebook className="w-5 h-5" />
+                        {/* Social icons */}
+                        <div className="flex items-center gap-4">
+                            <a href="https://web.facebook.com/profile.php?id=61589536477399" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-3 bg-muted hover:bg-accent transition-colors rounded-full text-muted-foreground hover:text-foreground">
+                                <IconBrandFacebook className="w-5 h-5" />
                             </a>
-                            <a href="#" aria-label="LinkedIn" className="p-3 bg-muted hover:bg-accent transition-colors rounded-full text-muted-foreground">
-                                <Linkedin className="w-5 h-5" />
-                            </a>
-                        </div> */}
+                        </div>
                     </motion.div>
 
                     {/* RIGHT — Form */}
