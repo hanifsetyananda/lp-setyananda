@@ -165,13 +165,13 @@ Footer saat ini hanya menampilkan "Copyright 2026 Setyananda". Untuk company pro
 - Nav links: Beranda (#home), Layanan (#service), Kontak (#contact)
 
 ### Acceptance Criteria
-- [ ] Layout footer multi-kolom (desktop), stack vertikal (mobile):
+- [x] Layout footer multi-kolom (desktop), stack vertikal (mobile):
   - Kolom 1: Logo/nama + deskripsi singkat (1-2 kalimat)
   - Kolom 2: Quick Links — Beranda, Layanan, Kontak
   - Kolom 3: Sosial Media — icon Facebook yang link ke page di atas
-- [ ] Copyright text tetap ada di paling bawah
-- [ ] Facebook icon gunakan dari `lucide-react` (`Facebook` icon)
-- [ ] Animasi `whileInView` konsisten dengan section lain
+- [x] Copyright text tetap ada di paling bawah
+- [x] Facebook icon gunakan dari `lucide-react` (`Facebook` icon)
+- [x] Animasi `whileInView` konsisten dengan section lain
 
 ---
 
