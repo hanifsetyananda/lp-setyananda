@@ -6,6 +6,9 @@
 > **Bahasa:** Bahasa Indonesia
 > **Sosial Media:** Facebook — https://web.facebook.com/profile.php?id=61589536477399
 
+> [!CAUTION]
+> **ATURAN KRITIS REPOSITORI**: Dilarang keras melakukan *commit* atau *push* kode secara langsung ke branch `main`. Branch `main` **tidak boleh** menerima kodingan atau modifikasi apa pun tanpa melalui Pull Request / Merge Request yang secara eksplisit telah disetujui oleh **Owner**.
+
 ### 🤖 AI Agent Workflow Instructions (Wajib Diikuti)
 1. **Perencanaan Wajib**: Jika Anda adalah AI Agent, selalu buat Task / Planning terlebih dahulu di awal, agar progres pengerjaan Anda bisa dilihat dan dipantau oleh programmer.
 2. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
