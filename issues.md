@@ -11,7 +11,8 @@
 1. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
 2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
 3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
-4. **Setelah selesai**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
+4. **Verifikasi dan Testing Mandiri**: Sebelum membuat Pull Request baru, Anda **wajib** menjalankan seluruh *test case* dan pengujian lokal via `bun run test` / `bun run dev` / `bun run build`. Pastikan **tidak ada satupun error**. Jika terdapat kegagalan atau bug, perbaiki terlebih dahulu sampai tuntas dan 100% lulus uji.
+5. **Setelah selesai dan lulus verifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 
 ---
 
@@ -151,8 +152,10 @@ Header saat ini hanya menampilkan teks "Setyananda". Perlu ditambahkan logo imag
 ---
 
 ## Issue #6: Perkaya Footer
-**Priority:** 🟡 High  
+**Priority:** 🟡 High (⚠️ **DITUNDA / ABANDONED SEMENTARA**)  
 **Estimated Effort:** 1 jam
+
+> **Catatan Pengerjaan Sebelumnya**: Pengerjaan komponen footer dan perbaikan awal telah dilakukan pada branch `feature/issue-6-rich-footer`. Jika Anda ditugaskan untuk melanjutkan atau menyelesaikan Issue #6 di masa depan, **jangan mulai dari awal**. Silakan lakukan *checkout* dan lanjutkan dari branch `feature/issue-6-rich-footer`.
 
 ### Context
 Footer saat ini hanya menampilkan "Copyright 2026 Setyananda". Untuk company profile profesional, footer harus lebih informatif.
@@ -325,21 +328,59 @@ Perlu tracking pengunjung untuk memahami traffic website.
 
 ---
 
+## Issue #13: Application Testing & Unit Testing (Vitest + Playwright)
+**Priority:** 🔴 Critical (⚡ **PRIORITAS UTAMA TERBARU**)  
+**Estimated Effort:** 2-3 jam
+
+### Context
+Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) dan verifikasi aplikasi yang kokoh sebelum *deployment* ke *production*. Pengujian harus mencakup kestabilan saat *build*, responsivitas desain pada berbagai ukuran layar, fungsionalitas formulir kontak, keakuratan tautan navigasi, integrasi tautan sosial, dan transisi tema mode gelap/terang.
+
+### Strategi Pengujian EmailJS (Wajib Diikuti)
+> ⚠️ **PENTING**: Akun EmailJS memiliki batas maksimal pengiriman gratis **200 email per bulan**. JANGAN menghabiskan kuota ini untuk keperluan *automated testing*.
+> - **Solusi**: Lakukan **Mock** pada fungsi `emailjs.send()` di dalam unit test menggunakan library seperti `vi.mock()` dari Vitest, sehingga pengujian dapat memverifikasi logika pengiriman, penanganan status sukses/gagal, dan *reset* formulir tanpa melakukan panggilan jaringan riil ke server EmailJS.
+
+### Acceptance Criteria & Test Cases
+- [ ] **Pass 1: Kestabilan Run & Build**
+  - Website tidak mengalami *error* atau *crash* saat dijalankan via perintah `bun run dev` maupun `bun run build`.
+- [ ] **Pass 2: Responsivitas Desain (Viewport Testing)**
+  - Desain antarmuka terbukti tetap responsif, rapi, dan tidak mengalami *overflow* saat diuji pada *viewport* spesifik:
+    - **iPhone 17, iPhone 17 Pro, iPhone 17 Pro Max**
+    - **Samsung Galaxy S25, Samsung Galaxy S25 Ultra**
+    - Perangkat seluler, tablet, dan *desktop* standar pada umumnya.
+- [ ] **Pass 3: Formulir Kontak EmailJS**
+  - Validasi *input* berfungsi dengan baik, tombol kirim dapat diinteraksi, dan penanganan status berhasil diuji secara terisolasi via *mocking* tanpa mengurangi kuota bulanan EmailJS.
+- [ ] **Pass 4: Navigasi Tautan Internal**
+  - Tombol dan tautan di *navbar* maupun *footer* yang mengarah ke target *anchor* (`#home`, `#service`, `#contact`) terverifikasi tepat sasaran dan lancar tanpa kegagalan *scroll*.
+- [ ] **Pass 5: Integrasi Tombol Facebook**
+  - Tombol Facebook mengarah ke atribut `href` yang akurat (`https://web.facebook.com/profile.php?id=61589536477399`) dan berhasil dibuka.
+- [ ] **Pass 6: Pergantian Mode Gelap & Terang**
+  - Tombol *switch* *dark mode* dan *light mode* berfungsi normal memodifikasi kelas pada dokumen HTML dan merender warna latar yang tepat.
+- [ ] **Pass 7: Verifikasi Isu-Isu Terdahulu**
+  - Tersedia *test case* untuk memvalidasi keberhasilan pengerjaan isu sebelumnya, seperti keakuratan `<title>`, atribut `lang="id"`, keberadaan *meta tag* SEO, kelengkapan Open Graph, validitas data terstruktur JSON-LD, serta tautan *favicon*.
+
+---
+
 ## Urutan Pengerjaan yang Disarankan
 
 ```
-1.  Issue #1  — Ganti Title & Branding         (15 min)
-2.  Issue #5  — Pasang Logo                     (20 min)
-3.  Issue #8  — Environment Variables           (20 min)
-4.  Issue #11 — Code Cleanup                    (15 min)
-5.  Issue #2  — Meta Tags SEO                   (30 min)
-6.  Issue #3  — robots.txt & sitemap.xml        (15 min)
-7.  Issue #4  — Structured Data JSON-LD         (30 min)
-8.  Issue #6  — Perkaya Footer + Facebook       (1 jam)
-9.  Issue #9  — OG Image                        (30 min)
-10. Issue #10 — Optimasi Gambar                 (1 jam)
-11. Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-12. Issue #12 — Analytics                       (20 min)
+>>> PRIORITAS UTAMA SAAT INI >>>
+1.  Issue #13 — Application Testing & Unit Testing (2-3 jam)
+
+>>> ISU SELESAI / TERVERIFIKASI >>>
+-   Issue #1  — Ganti Title & Branding         (SELESAI)
+-   Issue #5  — Pasang Logo                     (SELESAI)
+-   Issue #8  — Environment Variables           (SELESAI)
+-   Issue #11 — Code Cleanup                    (SELESAI)
+-   Issue #2  — Meta Tags SEO                   (SELESAI)
+-   Issue #3  — robots.txt & sitemap.xml        (SELESAI)
+-   Issue #4  — Structured Data JSON-LD         (SELESAI)
+
+>>> ISU TERTUNDA / SELANJUTNYA >>>
+2.  Issue #6  — Perkaya Footer + Facebook       (DITUNDA - Lanjutkan dari branch feature/issue-6-rich-footer)
+3.  Issue #9  — OG Image                        (30 min)
+4.  Issue #10 — Optimasi Gambar                 (1 jam)
+5.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
+6.  Issue #12 — Analytics                       (20 min)
 ```
 
 **Estimasi total: ~5-6 jam kerja**
