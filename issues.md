@@ -21,9 +21,9 @@ File `index.html` masih menggunakan title `reactlatihan`. Ini yang muncul di tab
 - `package.json` (ubah field `name`)
 
 ### Acceptance Criteria
-- [ ] `<title>` berubah menjadi `Setyananda — Jasa Pembuatan Website & Aplikasi Profesional`
-- [ ] `<html lang="id">` (ganti dari `en` ke `id` karena konten Bahasa Indonesia)
-- [ ] `package.json` field `name` berubah dari `reactlatihan` ke `setyananda`
+- [x] `<title>` berubah menjadi `Setyananda — Jasa Pembuatan Website & Aplikasi Profesional`
+- [x] `<html lang="id">` (ganti dari `en` ke `id` karena konten Bahasa Indonesia)
+- [x] `package.json` field `name` berubah dari `reactlatihan` ke `setyananda`
 
 ---
 
