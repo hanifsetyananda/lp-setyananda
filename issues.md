@@ -284,6 +284,12 @@ Ketika link website dibagikan di WhatsApp, Facebook, atau platform lain, harus a
 ### Context
 Gambar produk menggunakan URL external Unsplash. Sebaiknya lokal.
 
+### Acceptance Criteria
+- [x] Download Unsplash images used in the project and save them to `public/assets/` or `src/assets/`.
+- [x] Use `webp` format for better compression.
+- [x] Update references in the code to point to local assets.
+- [x] Implement lazy loading for images that are not above the fold.
+- [x] `bun run build` check.
 ### Files to Edit
 - `src/components/pages/landing-page/product.tsx` — ganti URL gambar
 - `src/components/pages/landing-page/hero.tsx` — tambahkan lazy loading
@@ -371,6 +377,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #13 — Application Testing & Unit Testing (SELESAI)
 -   Issue #6  — Perkaya Footer + Facebook       (SELESAI)
 -   Issue #9  — OG Image                        (SELESAI)
+-   Issue #10 — Optimasi Gambar & Performa      (SELESAI)
 -   Issue #1  — Ganti Title & Branding         (SELESAI)
 -   Issue #5  — Pasang Logo                     (SELESAI)
 -   Issue #8  — Environment Variables           (SELESAI)
@@ -380,9 +387,8 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #4  — Structured Data JSON-LD         (SELESAI)
 
 >>> ISU TERTUNDA / SELANJUTNYA >>>
-1.  Issue #10 — Optimasi Gambar                 (1 jam)
-2.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-3.  Issue #12 — Analytics                       (20 min)
+1.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
+2.  Issue #12 — Analytics                       (20 min)
 ```
 
 **Estimasi total: ~5-6 jam kerja**
