@@ -2,17 +2,17 @@
 
 > File ini berisi daftar issue yang bisa dikerjakan oleh junior developer atau AI Agent.
 > Setiap issue bersifat **independen** dan bisa dikerjakan secara paralel kecuali disebutkan sebaliknya.
-> Jika anda adalah AI Agent, selalu buat Task / Planning Terlebih dahulu, agar progress pengerjaan anda bisa dilihat oleh programmer
 > **Domain sementara:** `*.pages.dev` (Cloudflare Pages)
 > **Bahasa:** Bahasa Indonesia
 > **Sosial Media:** Facebook — https://web.facebook.com/profile.php?id=61589536477399
 
 ### 🤖 AI Agent Workflow Instructions (Wajib Diikuti)
-1. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
-2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
-3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
-4. **Verifikasi dan Testing Mandiri**: Sebelum membuat Pull Request baru, Anda **wajib** menjalankan seluruh *test case* dan pengujian lokal via `bun run test` / `bun run dev` / `bun run build`. Pastikan **tidak ada satupun error**. Jika terdapat kegagalan atau bug, perbaiki terlebih dahulu sampai tuntas dan 100% lulus uji.
-5. **Setelah selesai dan lulus verifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
+1. **Perencanaan Wajib**: Jika Anda adalah AI Agent, selalu buat Task / Planning terlebih dahulu di awal, agar progres pengerjaan Anda bisa dilihat dan dipantau oleh programmer.
+2. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
+3. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
+4. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
+5. **Verifikasi dan Testing Mandiri**: Sebelum membuat Pull Request baru, Anda **wajib** menjalankan seluruh *test case* dan pengujian lokal via `bun run test` / `bun run dev` / `bun run build`. Pastikan **tidak ada satupun error**. Jika terdapat kegagalan atau bug, perbaiki terlebih dahulu sampai tuntas dan 100% lulus uji.
+6. **Setelah selesai dan lulus verifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 
 ---
 
