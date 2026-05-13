@@ -11,7 +11,8 @@
 1. **Selalu kembali ke branch `main`** dan lakukan pull terbaru (`git checkout main && git pull origin main`).
 2. **Buat branch baru** untuk mengerjakan issue tertentu (`git checkout -b feature/issue-X-...`).
 3. **Kerjakan kodingan/perubahan** secara terisolasi pada branch tersebut.
-4. **Setelah selesai**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
+4. **Verifikasi kode**: Sebelum membuat Pull Request baru, selalu jalankan `bun run dev` dan pastikan tidak terdapat error/kegagalan kompilasi. Jika ada, perbaiki terlebih dahulu bugnya sampai tuntas.
+5. **Setelah selesai dan terverifikasi**, langsung lakukan commit, push ke branch baru tersebut, dan buatkan Pull Request secara otomatis.
 
 ---
 
