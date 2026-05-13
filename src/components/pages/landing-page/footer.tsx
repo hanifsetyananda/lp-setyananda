@@ -1,22 +1,5 @@
 import { motion } from "framer-motion"
-function FacebookIcon({ className }: { className?: string }) {
-    return (
-        <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            className={className}
-        >
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-        </svg>
-    )
-}
+import { IconBrandFacebook } from "@tabler/icons-react"
 
 export default function Footer() {
     return (
@@ -62,7 +45,7 @@ export default function Footer() {
                             aria-label="Kunjungi halaman Facebook Setyananda"
                             className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-muted-foreground hover:text-foreground hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200"
                         >
-                            <FacebookIcon className="w-5 h-5" />
+                            <IconBrandFacebook className="w-5 h-5" />
                         </a>
                     </div>
                 </div>
