@@ -155,7 +155,7 @@ Header saat ini hanya menampilkan teks "Setyananda". Perlu ditambahkan logo imag
 ---
 
 ## Issue #6: Perkaya Footer
-**Priority:** 🟡 High (⚠️ **DITUNDA / ABANDONED SEMENTARA**)  
+**Priority:** 🟡 High  
 **Estimated Effort:** 1 jam
 
 > **Catatan Pengerjaan Sebelumnya**: Pengerjaan komponen footer dan perbaikan awal telah dilakukan pada branch `feature/issue-6-rich-footer`. Jika Anda ditugaskan untuk melanjutkan atau menyelesaikan Issue #6 di masa depan, **jangan mulai dari awal**. Silakan lakukan *checkout* dan lanjutkan dari branch `feature/issue-6-rich-footer`.
@@ -171,13 +171,13 @@ Footer saat ini hanya menampilkan "Copyright 2026 Setyananda". Untuk company pro
 - Nav links: Beranda (#home), Layanan (#service), Kontak (#contact)
 
 ### Acceptance Criteria
-- [ ] Layout footer multi-kolom (desktop), stack vertikal (mobile):
+- [x] Layout footer multi-kolom (desktop), stack vertikal (mobile):
   - Kolom 1: Logo/nama + deskripsi singkat (1-2 kalimat)
   - Kolom 2: Quick Links — Beranda, Layanan, Kontak
   - Kolom 3: Sosial Media — icon Facebook yang link ke page di atas
-- [ ] Copyright text tetap ada di paling bawah
-- [ ] Facebook icon gunakan dari `lucide-react` (`Facebook` icon)
-- [ ] Animasi `whileInView` konsisten dengan section lain
+- [x] Copyright text tetap ada di paling bawah
+- [x] Facebook icon gunakan dari library icon (`IconBrandFacebook` dari `@tabler/icons-react`)
+- [x] Animasi `whileInView` konsisten dengan section lain
 
 ---
 
@@ -369,6 +369,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 
 >>> ISU SELESAI / TERVERIFIKASI >>>
 -   Issue #13 — Application Testing & Unit Testing (SELESAI)
+-   Issue #6  — Perkaya Footer + Facebook       (SELESAI)
 -   Issue #1  — Ganti Title & Branding         (SELESAI)
 -   Issue #5  — Pasang Logo                     (SELESAI)
 -   Issue #8  — Environment Variables           (SELESAI)
@@ -378,11 +379,10 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #4  — Structured Data JSON-LD         (SELESAI)
 
 >>> ISU TERTUNDA / SELANJUTNYA >>>
-1.  Issue #6  — Perkaya Footer + Facebook       (DITUNDA - Lanjutkan dari branch feature/issue-6-rich-footer)
-2.  Issue #9  — OG Image                        (30 min)
-3.  Issue #10 — Optimasi Gambar                 (1 jam)
-4.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-5.  Issue #12 — Analytics                       (20 min)
+1.  Issue #9  — OG Image                        (30 min)
+2.  Issue #10 — Optimasi Gambar                 (1 jam)
+3.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
+4.  Issue #12 — Analytics                       (20 min)
 ```
 
 **Estimasi total: ~5-6 jam kerja**

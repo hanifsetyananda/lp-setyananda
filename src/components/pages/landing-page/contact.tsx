@@ -11,11 +11,13 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 export default function ContactSection() {
     const [formData, setFormData] = useState({ name: "", email: "", phone: "", content: "" })
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+    const [errorMessage, setErrorMessage] = useState("")
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
         if (!formData.name.trim() || !formData.email.trim() || !formData.content.trim()) {
+            setErrorMessage("Mohon lengkapi semua field yang wajib diisi.")
             setStatus("error")
             return
         }
@@ -44,8 +46,12 @@ export default function ContactSection() {
             }, 4000)
         } catch (err) {
             console.error("EmailJS error:", err)
+            setErrorMessage("Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti atau hubungi via media sosial.")
             setStatus("error")
-            setTimeout(() => setStatus("idle"), 4000)
+            setTimeout(() => {
+                setStatus("idle")
+                setErrorMessage("")
+            }, 5000)
         }
     }
 
@@ -140,7 +146,7 @@ export default function ContactSection() {
                                         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                                         className="p-4 bg-red-500/10 text-red-700 dark:text-red-400 border border-red-500/20 rounded-xl text-sm font-medium"
                                     >
-                                        ✕ Mohon lengkapi semua field yang wajib diisi.
+                                        ✕ {errorMessage}
                                     </motion.div>
                                 )}
                             </AnimatePresence>

@@ -15,6 +15,7 @@ describe('ContactSection Component', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     window.alert = vi.fn() // Mock window.alert to prevent jsdom errors
+    vi.spyOn(console, 'error').mockImplementation(() => {}) // Suppress console.error logs in test output
   })
 
   it('renders all required form fields correctly', () => {
@@ -112,7 +113,7 @@ describe('ContactSection Component', () => {
 
     // Assert error message display
     expect(
-      screen.getByText(/Mohon lengkapi semua field yang wajib diisi/i)
+      screen.getByText(/terjadi kesalahan saat mengirim pesan/i)
     ).toBeInTheDocument()
   })
 
