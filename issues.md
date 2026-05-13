@@ -2,7 +2,7 @@
 
 > File ini berisi daftar issue yang bisa dikerjakan oleh junior developer atau AI Agent.
 > Setiap issue bersifat **independen** dan bisa dikerjakan secara paralel kecuali disebutkan sebaliknya.
-> 
+> Jika anda adalah AI Agent, selalu buat Task / Planning Terlebih dahulu, agar progress pengerjaan anda bisa dilihat oleh programmer
 > **Domain sementara:** `*.pages.dev` (Cloudflare Pages)
 > **Bahasa:** Bahasa Indonesia
 > **Sosial Media:** Facebook — https://web.facebook.com/profile.php?id=61589536477399
@@ -38,17 +38,17 @@ Agar website bisa ditemukan di Google Search, perlu meta tags yang lengkap di `<
 - `index.html`
 
 ### Acceptance Criteria
-- [ ] Tambahkan `<meta name="description" content="Setyananda — Jasa pembuatan website pribadi, company profile, dan aplikasi custom. Solusi digital profesional, modern, dan cepat untuk bisnis Anda.">`
-- [ ] Tambahkan `<meta name="keywords" content="jasa pembuatan website, company profile, aplikasi custom, setyananda, web developer indonesia">`
-- [ ] Tambahkan Open Graph tags:
+- [x] Tambahkan `<meta name="description" content="Setyananda — Jasa pembuatan website pribadi, company profile, dan aplikasi custom. Solusi digital profesional, modern, dan cepat untuk bisnis Anda.">`
+- [x] Tambahkan `<meta name="keywords" content="jasa pembuatan website, company profile, aplikasi custom, setyananda, web developer indonesia">`
+- [x] Tambahkan Open Graph tags:
   ```html
   <meta property="og:type" content="website">
   <meta property="og:title" content="Setyananda — Jasa Pembuatan Website & Aplikasi">
   <meta property="og:description" content="Solusi digital profesional untuk bisnis Anda. Website modern, cepat, dan SEO-friendly.">
   <meta property="og:image" content="/og-image.png">
   ```
-- [ ] Tambahkan Twitter Card meta tags
-- [ ] **Jangan hardcode `og:url` dan `canonical`** — karena domain belum final, bisa ditambahkan nanti
+- [x] Tambahkan Twitter Card meta tags
+- [x] **Jangan hardcode `og:url` dan `canonical`** — karena domain belum final, bisa ditambahkan nanti
 
 ---
 
