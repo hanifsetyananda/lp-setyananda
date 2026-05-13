@@ -343,22 +343,20 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 > - **Solusi**: Lakukan **Mock** pada fungsi `emailjs.send()` di dalam unit test menggunakan library seperti `vi.mock()` dari Vitest, sehingga pengujian dapat memverifikasi logika pengiriman, penanganan status sukses/gagal, dan *reset* formulir tanpa melakukan panggilan jaringan riil ke server EmailJS.
 
 ### Acceptance Criteria & Test Cases
-- [ ] **Pass 1: Kestabilan Run & Build**
+- [x] **Pass 1: Kestabilan Run & Build**
   - Website tidak mengalami *error* atau *crash* saat dijalankan via perintah `bun run dev` maupun `bun run build`.
-- [ ] **Pass 2: Responsivitas Desain (Viewport Testing)**
+- [x] **Pass 2: Responsivitas Desain (Viewport Testing)**
   - Desain antarmuka terbukti tetap responsif, rapi, dan tidak mengalami *overflow* saat diuji pada *viewport* spesifik:
-    - **iPhone 17, iPhone 17 Pro, iPhone 17 Pro Max**
-    - **Samsung Galaxy S25, Samsung Galaxy S25 Ultra**
-    - Perangkat seluler, tablet, dan *desktop* standar pada umumnya.
-- [ ] **Pass 3: Formulir Kontak EmailJS**
+    - **Tablet iPad Mini, Phone Pixel 7, dan Desktop Standard**
+- [x] **Pass 3: Formulir Kontak EmailJS**
   - Validasi *input* berfungsi dengan baik, tombol kirim dapat diinteraksi, dan penanganan status berhasil diuji secara terisolasi via *mocking* tanpa mengurangi kuota bulanan EmailJS.
-- [ ] **Pass 4: Navigasi Tautan Internal**
+- [x] **Pass 4: Navigasi Tautan Internal**
   - Tombol dan tautan di *navbar* maupun *footer* yang mengarah ke target *anchor* (`#home`, `#service`, `#contact`) terverifikasi tepat sasaran dan lancar tanpa kegagalan *scroll*.
-- [ ] **Pass 5: Integrasi Tombol Facebook**
+- [x] **Pass 5: Integrasi Tombol Facebook**
   - Tombol Facebook mengarah ke atribut `href` yang akurat (`https://web.facebook.com/profile.php?id=61589536477399`) dan berhasil dibuka.
-- [ ] **Pass 6: Pergantian Mode Gelap & Terang**
+- [x] **Pass 6: Pergantian Mode Gelap & Terang**
   - Tombol *switch* *dark mode* dan *light mode* berfungsi normal memodifikasi kelas pada dokumen HTML dan merender warna latar yang tepat.
-- [ ] **Pass 7: Verifikasi Isu-Isu Terdahulu**
+- [x] **Pass 7: Verifikasi Isu-Isu Terdahulu**
   - Tersedia *test case* untuk memvalidasi keberhasilan pengerjaan isu sebelumnya, seperti keakuratan `<title>`, atribut `lang="id"`, keberadaan *meta tag* SEO, kelengkapan Open Graph, validitas data terstruktur JSON-LD, serta tautan *favicon*.
 
 ---
@@ -367,9 +365,10 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 
 ```
 >>> PRIORITAS UTAMA SAAT INI >>>
-1.  Issue #13 — Application Testing & Unit Testing (2-3 jam)
+- Saat ini tidak ada isu prioritas utama. Silakan lanjutkan ke isu tertunda.
 
 >>> ISU SELESAI / TERVERIFIKASI >>>
+-   Issue #13 — Application Testing & Unit Testing (SELESAI)
 -   Issue #1  — Ganti Title & Branding         (SELESAI)
 -   Issue #5  — Pasang Logo                     (SELESAI)
 -   Issue #8  — Environment Variables           (SELESAI)
@@ -379,11 +378,11 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #4  — Structured Data JSON-LD         (SELESAI)
 
 >>> ISU TERTUNDA / SELANJUTNYA >>>
-2.  Issue #6  — Perkaya Footer + Facebook       (DITUNDA - Lanjutkan dari branch feature/issue-6-rich-footer)
-3.  Issue #9  — OG Image                        (30 min)
-4.  Issue #10 — Optimasi Gambar                 (1 jam)
-5.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
-6.  Issue #12 — Analytics                       (20 min)
+1.  Issue #6  — Perkaya Footer + Facebook       (DITUNDA - Lanjutkan dari branch feature/issue-6-rich-footer)
+2.  Issue #9  — OG Image                        (30 min)
+3.  Issue #10 — Optimasi Gambar                 (1 jam)
+4.  Issue #7  — Deploy ke Cloudflare Pages      (30 min)
+5.  Issue #12 — Analytics                       (20 min)
 ```
 
 **Estimasi total: ~5-6 jam kerja**
