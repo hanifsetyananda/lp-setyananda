@@ -332,8 +332,8 @@ Perlu tracking pengunjung untuk memahami traffic website.
 - Otomatis inject script
 
 ### Acceptance Criteria
-- [ ] Analytics tool terpasang dan aktif
-- [ ] Data pengunjung bisa dilihat di dashboard
+- [x] Analytics tool terpasang dan aktif
+- [x] Data pengunjung bisa dilihat di dashboard
 
 ---
 
@@ -379,6 +379,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #9  — OG Image                        (SELESAI)
 -   Issue #10 — Optimasi Gambar & Performa      (SELESAI)
 -   Issue #7  — Deploy ke Cloudflare Pages      (SELESAI)
+-   Issue #12 — Analytics                       (SELESAI)
 -   Issue #1  — Ganti Title & Branding         (SELESAI)
 -   Issue #5  — Pasang Logo                     (SELESAI)
 -   Issue #8  — Environment Variables           (SELESAI)
@@ -388,7 +389,7 @@ Website Setyananda membutuhkan lapisan pengujian otomatis (*automated testing*) 
 -   Issue #4  — Structured Data JSON-LD         (SELESAI)
 
 >>> ISU TERTUNDA / SELANJUTNYA >>>
-1.  Issue #12 — Analytics                       (20 min)
+-   Tidak ada isu tertunda. Semua target utama telah tercapai.
 ```
 
 **Estimasi total: ~5-6 jam kerja**
