@@ -93,7 +93,7 @@ export default function ContactSection() {
                                 </motion.div>
 
                                 <p>
-                                    Pesan yang dikirim melalui formulir ini akan langsung diteruskan ke email pribadi saya. Saya berkomitmen untuk memberikan <span className="font-semibold text-foreground">respons cepat setiap hari antara pukul 13.00 – 07.00 WIB</span>.
+                                    Pesan yang dikirim melalui formulir ini akan langsung diteruskan ke email pribadi saya.
                                 </p>
                                 <p>
                                     Anda juga dapat menghubungi saya secara langsung melalui platform media sosial profesional di bawah ini.
@@ -210,11 +210,10 @@ export default function ContactSection() {
                                 whileHover={status !== "loading" ? { scale: 1.01 } : {}}
                                 whileTap={status !== "loading" ? { scale: 0.98 } : {}}
                                 transition={{ duration: 0.15, ease: "easeOut" }}
-                                className={`w-full mt-2 h-12 rounded-xl text-base font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${
-                                    status === "loading"
+                                className={`w-full mt-2 h-12 rounded-xl text-base font-semibold transition-colors duration-200 flex items-center justify-center gap-2 ${status === "loading"
                                         ? "bg-zinc-200 text-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 cursor-not-allowed"
                                         : "bg-zinc-100 hover:bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-white"
-                                }`}
+                                    }`}
                             >
                                 {status === "loading" ? (
                                     <>

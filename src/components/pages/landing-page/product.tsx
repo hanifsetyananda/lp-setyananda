@@ -3,37 +3,37 @@ import { motion } from "framer-motion"
 
 const products = [
     {
-        title: "Jasa Pembuatan Website Pribadi",
-        image: "/assets/web-pribadi.webp",
+        title: "Pembuatan CV ATS Friendly",
+        image: "/assets/cv.webp",
         features: [
-            "Website Portfolio agar terlihat Profesional",
-            "Biaya Gratis jika ingin perubahan kecil",
-            "Load halaman cepat karena dibuat menggunakan ReactJS",
+            "Data dikirim dalam bentuk pdf dan docx",
+            "CV di optimasi berdasarkan algoritma ATS yang dipakai banyak perusahaan"
         ],
-        price: "Rp. 100.000",
-        note: "Jika ingin menggunakan custom domain, ada biaya tambahan tersendiri"
+        price: "Rp 35.000",
+        note: ""
     },
     {
-        title: "Jasa Pembuatan Company Profile",
-        image: "/assets/company-profile.webp",
+        title: "Pembuatan Web Portofolio Pribadi",
+        image: "/assets/landing-page.webp",
         features: [
-            "Fitur Artikel, Produk, Galeri",
-            "Website muncul di Google Search",
-            "Gratis Biaya Maintenance 3 Bulan Pertama"
+            "Website Portofolio Online agar lebih Profesional",
+            "Gratis CV ATS",
+            "Gratis domain .my.id selama 1 tahun",
         ],
-        price: "Rp. 500.000",
-        note: "Harga belum termasuk biaya domain dan hosting"
+        price: "Rp 100.000",
+        note: ""
     },
     {
-        title: "Jasa Pembuatan Aplikasi Custom",
-        image: "/assets/custom-app.webp",
+        title: "Pembuatan Company Profile",
+        image: "/assets/custom.webp",
         features: [
-            "Pembuatan aplikasi mobile, desktop, ataupun website",
-            "Saya bisa memberikan solusi murah dan cerdas berdasarkan kebutuhan Anda",
-            "Cocok jika anda sudah memiliki usaha dan ingin membuat aplikasi untuk mempermudah operasional anda"
+            "Website Company Profile ",
+            "Gratis Domain .COM / .ID",
+            "Gratis Hosting selama 1 tahun (SSD NVMe & Cepat)",
+            "Tampilan Profesional, Responsive, dan SEO Friendly",
         ],
-        price: "Menyesuaikan",
-        note: "Sebelumnya akan dilakukan diskusi terlebih dahulu untuk menentukan kebutuhan Anda"
+        price: "Rp. 1.000.000",
+        note: ""
     },
 
 ]

@@ -44,9 +44,8 @@ export default function HeroSection() {
                         }}
                         className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight tracking-tight"
                     >
-                        Wujudkan{" "}
-                        <span className="text-primary">Aplikasi Impian</span>{" "}
-                        Anda Bersama Saya
+                        Jasa{" "}
+                        <span className="text-primary items-center ">Pembuatan Website</span>{" "}
                     </motion.h1>
 
                     <motion.p
@@ -56,7 +55,7 @@ export default function HeroSection() {
                         }}
                         className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed"
                     >
-                        Saya membantu individu dan bisnis membangun website yang modern, cepat, dan profesional.
+                        Saya membantu anda membangun website yang modern, cepat, dan profesional.
                         Dari portfolio pribadi hingga aplikasi kompleks.
                     </motion.p>
                 </motion.div>
